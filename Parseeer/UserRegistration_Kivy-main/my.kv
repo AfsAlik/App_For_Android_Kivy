@@ -1,0 +1,713 @@
+<Istor>:
+    name: "ist"
+
+    canvas.before:
+        Rectangle:
+            source: 'Img\\Main_theme.jpg'
+            size: self.size
+    
+    BoxLayout:
+
+        orientation: "vertical"
+        padding: [50,100,50,250]
+        spacing: 1
+        
+        Label:
+            color: 255/255, 255/255, 255/255, 0.7
+            bold: True
+            italic: True
+            outline_width: 1
+            text: "История посещений"
+    
+        TextInput:
+            id: url
+            font_size: 14
+            readonly: True
+            bold: True
+   
+    BoxLayout:
+
+        row: 2
+        padding: [70,500,70,50]
+        spacing: 10
+        orientation: "vertical"
+        
+        Button:
+            color: 0/255, 0/255, 0/255, 0.7
+            font_size: 14
+            text: "Выйти"
+            bold: True
+            background_color: 255/255, 255/255, 255/255, 0.7
+            background_normal: ''
+            on_release:
+                app.root.current = "main"
+                root.manager.transition.direction = "left"
+                
+<Nastroiki>:
+    name: "nast"
+    
+    canvas.before:
+        Rectangle:
+            source: 'Img\\Main_theme.jpg' 
+            size: self.size
+
+    BoxLayout:
+        orientation: "vertical"
+
+        padding: [50,100,50,200]
+        spacing: 10
+        
+        Label:
+            color: 255/255, 255/255, 255/255, 0.7
+            bold: True
+            italic: True
+            outline_width: 1
+            text: "Переключатель тёмной и светлой темы"
+
+        GridLayout:
+        
+            row_force_default: True
+            row_default_height: 50
+            padding: [10,10,10,350]
+            spacing: 5
+            cols: 2
+
+            Label:
+                text: 'Тёмная тема' if switch.active else 'Светлая тема'
+                color: 255/255, 255/255, 255/255, 0.7
+                bold: True
+                italic: True
+                outline_width: 1
+
+            Switch:
+                id: switch
+                on_active: root.switch(self, self.active)
+        
+        Label:
+            color: 255/255, 255/255, 255/255, 0.7
+            bold: True
+            italic: True
+            outline_width: 1
+            text: "Настройка яркости"
+            
+
+        Slider:
+            id: slide
+
+    BoxLayout:
+
+        row: 2
+        padding: [70,450,70,50]
+        spacing: 10
+        orientation: "vertical"
+
+        Button:
+            color: 0/255, 0/255, 0/255, 0.7
+            font_size: 14
+            text: "Применить"
+            bold: True
+            background_color: 255/255, 255/255, 255/255, 0.7
+            background_normal: ''
+            on_release:
+                app.root.current = "main"
+                root.manager.transition.direction = "up"
+
+        Button:
+            color: 0/255, 0/255, 0/255, 0.7
+            font_size: 14
+            text: "Выйти"
+            bold: True
+            background_color: 255/255, 255/255, 255/255, 0.7
+            background_normal: ''
+            on_release:
+                app.root.current = "main"
+                root.manager.transition.direction = "up"
+    
+<Parsing>:
+    name: "pars"
+
+    canvas.before:
+        Rectangle:
+            source: 'Img\\Main_theme.jpg'
+            size: self.size
+
+    GridLayout:
+        
+        row_force_default: True
+        row_default_height: 50
+        padding: [10,10,10,350]
+        spacing: 5
+        cols: 2
+
+        Label:
+            color: 255/255, 255/255, 255/255, 0.7
+            bold: True
+            italic: True
+            outline_width: 1
+            text: "URL ссылка сайта"
+
+        TextInput:
+            id: tx1
+            font_size: 14
+            bold: True
+
+        Label:
+            color: 255/255, 255/255, 255/255, 0.7
+            bold: True
+            italic: True
+            outline_width: 1
+            text: "Выбор раздела сайта"
+        
+        Spinner:
+            id: spin1
+            background_color: 255/255, 255/255, 255/255, 0.7
+            text: 'Тип товара'
+            values: 'Смартфоны','Ноутбуки','Телевизоры', 'Повер банки', 'Экшн камеры', 'Автокресла', 'Смарт-часы', 'Компьютеры','Моноблоки','Игровые компьютеры'
+            on_text: root.val1(spin1.text)
+        
+        Label:
+            color: 255/255, 255/255, 255/255, 0.7
+            bold: True
+            italic: True
+            outline_width: 1
+            text: "Выбор способа вывода"
+        
+        Spinner:
+            id: spin2
+            background_color: 255/255, 255/255, 255/255, 0.7
+            text: 'Вывод'
+            values: 'Файл','На экран'
+            on_text: root.val2(spin2.text)
+
+    # BoxLayout:
+
+    #     orientation: "vertical"
+
+    #     padding: [90,320,90,500]
+    #     spacing: 10
+
+    #     Label:
+    #         text: "Шкала прогресса"
+
+    #     ProgressBar:
+    #         id: pb
+    #         value: .0
+    #         min: 0
+    #         max: 1           
+
+    BoxLayout:
+
+        orientation: "vertical"
+
+        padding: [10,190,10,120]
+        spacing: 3
+
+        Label:
+            color: 255/255, 255/255, 255/255, 0.7
+            bold: True
+            italic: True
+            outline_width: 1
+            text: "Окно вывода найденной информации"
+            size_hint_y: 0.1
+
+        TextInput:
+            id: VivodPars
+            font_size: 14
+            readonly: True
+            bold: True
+        
+        ProgressBar:
+            id: bar
+            value: 0
+            min: 0
+            max: 1
+                              
+    BoxLayout:
+
+        row: 2
+        padding: [70,450,70,50]
+        spacing: 10
+        orientation: "vertical"
+
+        Button:
+            color: 0/255, 0/255, 0/255, 0.7
+            font_size: 14
+            text: "Найти информацию!"
+            bold: True
+            background_color: 255/255, 255/255, 255/255, 0.7
+            background_normal: ''
+            on_press: 
+                root.clear()
+                root.bar2()
+            on_release:
+                root.sohrURL()
+
+                # app.root.current = print(" \n Error01 - Сбой подключения к выбранному сайту \n Проверьте правильность указанной ссылки и повторите попытку")
+                
+                # app.root.current = print(" \n Error02 - Подключение к интернету отсутствует \n Проверьте ваше соединение и повторите попытку")
+                
+                # app.root.current = print(" \n Error03 - Превышение лимита времени соединения с сайтом \n Вохможно, выбранный сайт временно недоступен, повторите попытку позже")
+                
+                # app.root.current = print(" \n Inf01 - Подключение к сайту установлено успешно")
+
+        Button:
+            color: 0/255, 0/255, 0/255, 0.7
+            font_size: 14
+            text: "Вернуться в главное меню"
+            bold: True
+            background_color: 255/255, 255/255, 255/255, 0.7
+            background_normal: ''
+            on_release:
+                app.root.current = "main"
+                root.manager.transition.direction = "left"
+    
+<Rassilka>:
+    name: "rass"
+
+    canvas.before:
+        Rectangle:
+            source: 'Img\\Main_theme.jpg'
+            size: self.size
+
+    GridLayout:
+
+        cols: 2   
+        padding: [70,50,70,400]
+        spacing: 5
+        orientation: 'tb-lr'
+
+        Label:
+            color: 255/255, 255/255, 255/255, 0.7
+            bold: True
+            italic: True
+            outline_width: 1
+            font_size: 14
+            text: "         Выберите\nдату уведомлений"
+
+        Label:
+            color: 255/255, 255/255, 255/255, 0.7
+            bold: True
+            italic: True
+            outline_width: 1
+            id: date_label
+            font_size: 14
+            text: ""
+
+        Button:
+            color: 0/255, 0/255, 0/255, 0.7
+            text:'  Открыть\nкалендарь'
+            bold: True
+            background_color: 255/255, 255/255, 255/255, 0.7
+            background_normal: ''
+            font_size: 14
+            on_release:
+                root.show_date_picker()
+
+        Label:
+            color: 255/255, 255/255, 255/255, 0.7
+            bold: True
+            italic: True
+            outline_width: 1
+            font_size: 14
+            text: " Выберите время\nдля уведомлений"
+            
+        Label:
+            color: 255/255, 255/255, 255/255, 0.7
+            bold: True
+            italic: True
+            outline_width: 1
+            id: time_label
+            font_size: 14
+            text: ""
+
+        Button:
+            color: 0/255, 0/255, 0/255, 0.7
+            text:'Открыть часы'
+            bold: True
+            background_color: 255/255, 255/255, 255/255, 0.7
+            background_normal: ''
+            font_size: 14
+            on_release:
+                root.show_time_picker()
+
+    BoxLayout:
+
+        orientation: "vertical"
+        padding: [50,200,50,170]
+        spacing: 1
+
+        Label:
+            color: 255/255, 255/255, 255/255, 0.7
+            bold: True
+            italic: True
+            outline_width: 1
+            font_size: 14
+            text: "Почта получателя"
+
+        TextInput:
+            id: rassil_poluch
+            size_hint_y: 0.5
+            font_size: 14
+            bold: True
+            multiline: False
+
+        Label:
+            color: 255/255, 255/255, 255/255, 0.7
+            bold: True
+            italic: True
+            outline_width: 1
+            font_size: 14
+            text: "Сообщение для получателя"
+
+        TextInput:
+            id: rassil
+            font_size: 14
+            bold: True
+
+    BoxLayout:
+
+        row: 2
+        padding: [70,450,70,50]
+        spacing: 10
+        orientation: "vertical"
+
+        Button:
+            color: 0/255, 0/255, 0/255, 0.7
+            font_size: 14
+            text: "Добавить рассылку"
+            bold: True
+            background_color: 255/255, 255/255, 255/255, 0.7
+            background_normal: ''
+            on_release:
+                root.send_email()
+        
+        Button:
+            color: 0/255, 0/255, 0/255, 0.7
+            font_size: 14
+            text: "Выйти"
+            bold: True
+            background_color: 255/255, 255/255, 255/255, 0.7
+            background_normal: ''
+            on_release:
+                app.root.current = "main"
+                root.manager.transition.direction = "left"
+
+<CreateAccountWindow>:
+    name: "create"
+
+    canvas.before:
+        Rectangle:
+            source: 'Img\\Fon_reg.jpg'
+            size: self.size
+
+    namee: namee
+    email: email
+    password: passw
+
+    BoxLayout:
+        
+        row: 1
+        orientation: "vertical"
+        padding: [70,100,70,200]
+        spacing: 10
+
+        Label:
+            color: 255/255, 255/255, 255/255, 0.7
+            bold: True
+            outline_width: 3
+            italic: True
+            text: "Регистрация аккаунта"
+            font_size: 30
+
+        Label:
+            color: 255/255, 255/255, 255/255, 0.7
+            bold: True
+            outline_width: 1
+            text: "Придумайте ваш логин: "
+            font_size: 14
+
+        TextInput:
+            id: namee
+            multiline: False
+            font_size: 14
+            write_tab: False
+
+        Label:
+            color: 255/255, 255/255, 255/255, 0.7
+            bold: True
+            outline_width: 1
+            text: "Ваш новый адрес элекстронной почты: "
+            font_size: 14
+
+        TextInput:
+            id: email
+            multiline: False
+            font_size: 14
+            write_tab: False
+
+        Label:
+            color: 255/255, 255/255, 255/255, 0.7
+            bold: True
+            italic: True
+            outline_width: 1
+            text: "Ваш новый пароль: "
+            font_size: 14
+
+        TextInput:
+            id: passw
+            multiline: False
+            password: True
+            font_size: 14
+            write_tab: False
+
+    BoxLayout:
+
+        row: 2
+        padding: [70,450,70,50]
+        spacing: 10
+        orientation: "vertical"
+
+        Button:
+            color: 0/255, 0/255, 0/255, 0.7
+            font_size: 14
+            text: "У вас уже есть аккаунт?"
+            bold: True
+            background_color: 255/255, 255/255, 255/255, 0.7
+            background_normal: ''
+            on_release:
+                root.manager.transition.direction = "left"
+                root.login()
+
+        Button:
+            color: 0/255, 0/255, 0/255, 0.7
+            text: "Зарегистрироваться"
+            font_size: 14
+            bold: True
+            background_color: 255/255, 255/255, 255/255, 0.7
+            background_normal: ''
+            on_release:
+                root.manager.transition.direction = "left"
+                root.submit()
+
+<LoginWindow>:
+    name: "login"
+
+    canvas.before:
+        Rectangle:
+            source: 'Img\\Fon_reg.jpg'
+            size: self.size
+
+    email: email
+    password: password
+
+    BoxLayout:
+
+        padding: [70,100,70,400]
+
+        Image:
+            source: 'Img\\Lupa.png'
+
+    Label:
+        color: 255/255, 255/255, 255/255, 0.7
+        bold: True
+        italic: True
+        outline_width: 3
+        text: "Вход в аккаунт"
+        size_hint: 0.8, 0.2
+        pos_hint: {"x":0.1, "top":1}
+
+        font_size: 30
+
+    GridLayout:
+        
+        cols: 2
+        row_force_default: True
+        row_default_height: 30
+        padding: [70,250,70,200]
+        spacing: 10
+
+        Image: 
+            source: 'Img\\Pochta.png'
+            size_hint_x: (None)
+            width:30             
+
+        TextInput:
+            id: email 
+            font_size: 14
+            multiline: False
+            write_tab: False
+                        
+        Image: 
+            source: 'Img\\zamok.png'
+            size_hint_x: (None)
+            width:30                    
+            
+        TextInput:
+            id: password  
+            font_size: 14
+            multiline: False
+            password: True
+            write_tab: False
+        
+    BoxLayout:
+
+        row: 2
+        padding: [70,350,70,200]
+        spacing: 10
+        orientation: "vertical"
+
+        Button:
+            color: 0/255, 0/255, 0/255, 0.7
+            font_size: 14
+            pos_hint: {"center_x": .5}
+            text: "Авторизоваться"
+            bold: True
+            background_color: 255/255, 255/255, 255/255, 0.7
+            background_normal: ''
+            on_release:
+                root.manager.transition.direction = "left"
+                root.loginBtn()
+    
+    BoxLayout:
+
+        row: 2
+        padding: [70,500,70,50]
+        spacing: 10
+        orientation: "vertical"
+       
+        Button:
+            color: 0/255, 0/255, 0/255, 0.7
+            font_size: 14
+            text: "Новый пользователь?"
+            bold: True
+            background_color: 255/255, 255/255, 255/255, 0.7
+            background_normal: ''
+            on_release:
+                root.manager.transition.direction = "right"
+                root.createBtn()
+
+
+<MainWindow>:
+    name: "main"
+    n: n
+
+    canvas.before:
+        Rectangle:
+            source: 'Img\\Main_theme.jpg'
+            size: self.size
+    # email : email
+    # created : created
+
+
+    GridLayout:
+        spacing: 5
+        padding: [10,10,200,550]
+        row: 2
+        cols: 2
+
+        Label:
+            color: 255/255, 255/255, 255/255, 0.7
+            bold: True
+            italic: True
+            outline_width: 1
+            widht: 20
+            text: "Здравстуйте, "
+            font_size: 14
+
+        Label:
+            color: 255/255, 255/255, 255/255, 0.7
+            bold: True
+            italic: True
+            outline_width: 1
+            font_size: 14
+            id: n
+            text: "Логин аккаунта: "
+
+        Button:
+            color: 0/255, 0/255, 0/255, 0.7
+            font_size: 14
+            text: "Настройки"
+            bold: True
+            background_color: 255/255, 255/255, 255/255, 0.7
+            background_normal: ''
+            on_release:
+                app.root.current = "nast"
+                root.manager.transition.direction = "down"    
+            
+        Button:
+            color: 0/255, 0/255, 0/255, 0.7
+            font_size: 14
+            text: "Выйти"
+            bold: True
+            background_color: 255/255, 255/255, 255/255, 0.7
+            background_normal: ''
+            on_release:
+                app.root.current = "login"
+                root.manager.transition.direction = "down"
+    
+    GridLayout:
+        spacing: 5
+        padding: [310,10,10,550]
+        row: 2
+        cols: 2
+
+        Image: 
+            source: 'Img\\Lupa.png' 
+            size_hint_x: (None)
+            width:100  
+
+    BoxLayout:
+
+        orientation: "vertical"
+
+        padding: [50,220,50,220]
+        spacing: 10
+        
+        
+        Button:
+            color: 0/255, 0/255, 0/255, 0.7
+            font_size: 25
+            text: "Поиск информации"
+            bold: True
+            background_color: 255/255, 255/255, 255/255, 0.7
+            background_normal: ''
+            on_release:
+                app.root.current = "pars"
+                root.manager.transition.direction = "right"
+
+        Button:
+            color: 0/255, 0/255, 0/255, 0.7
+            font_size: 25
+            text: "История посещений"
+            bold: True
+            background_color: 255/255, 255/255, 255/255, 0.7
+            background_normal: ''
+            on_release:
+                app.root.current = "ist"
+                root.manager.transition.direction = "right"  
+
+        Button:
+            color: 0/255, 0/255, 0/255, 0.7
+            font_size: 25
+            text: "Рассылка"
+            bold: True
+            background_color: 255/255, 255/255, 255/255, 0.7
+            background_normal: ''
+            on_release:
+                app.root.current = "rass"
+                root.manager.transition.direction = "right"    
+            
+
+        # Label:
+        #     font_size: 14
+        #     id: email
+        #     pos_hint:{"x": 0.1, "top":0.2}
+        #     size_hint:0.8, 0.2
+        #     text: "Эл. адрес: "
+
+        # Label:
+        #     font_size: 14
+        #     id: created
+        #     pos_hint:{"x": 0.1, "top":0.2}
+        #     size_hint:0.8, 0.2
+        #     text: "Created: "

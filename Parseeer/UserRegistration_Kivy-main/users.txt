@@ -1,0 +1,4 @@
+teste@email.com;12345;Luiz Henrique;2021-09-22
+Nik@email.com;123;Kamdyba;2022-05-11
+Ruben005@yande.ru;12345;Ruben;2022-05-11
+eva@mail.ru;12345;eva;2022-05-11
